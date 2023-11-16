@@ -377,11 +377,127 @@ int zadatak7(int& argc, char**& argv)
 
 int zadatak8(int& argc, char**& argv)
 {
+    const int n = 6;
+
+    int p;
+    int q;
+    int k;
+
+    int irow;
+    int jcol;
+    int i;
+    int j;
+
+    int l;
+    int y = 0;
+
+    int rank;
+    int row_id;
+    int col_id;
+
+    int a[n][n];
+    int b[n];
+    int c[n];
+
+    MPI_Datatype vrblok;
+    MPI_Status status;
+    MPI_Comm row_comm;
+    MPI_Comm col_comm;
+    MPI_Comm comm;
+
+    MPI_Init(&argc, &argv);
+
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &p);
+
+    q = (int)sqrt((double)p);
+    k = n / q;
+
+    int* local_a = (int*)calloc(k * k, sizeof(int));
+    int* local_b = (int*)calloc(k, sizeof(int));
+
+    if (local_a == NULL || local_b == NULL)
+    {
+        printf("calloc memory error!\n");
+        return 1;
+    }
+
+    MPI_Type_vector(k, k, n, MPI_INT, &vrblok);
+    MPI_Type_commit(&vrblok);
+
+    if (rank == 0)
+    {
+        for (i = 0; i < n; i++)
+            for (j = 0; j < n; j++)
+                a[i][j] = i + j;
+
+        for (i = 0; i < n; i++)
+            b[i] = 1;
 
 
+    }
+    if (rank == 0)
+    {
+        for (i = 0; i < k; i++)
+            for (j = 0; j < k; j++)
+                local_a[y++] = a[i][j];
 
+        l = 1;
+        for (i = 0; i < q; i++)
+            for (j = 0; j < q; j++)
+                if ((i + j) != 0)
+                {
+                    MPI_Send(&a[i * k][j * k], 1, vrblok, l, 2, MPI_COMM_WORLD);
+                    l++;
+                }
+                    
+    }
+    else
+    {
+        MPI_Recv(local_a, k * k, MPI_INT, 0, 2, MPI_COMM_WORLD, &status);
+    }
 
+    irow = rank / q;
+    jcol = rank % q;
+    comm = MPI_COMM_WORLD;
 
+    MPI_Comm_split(comm, irow, jcol, &row_comm);
+    MPI_Comm_split(comm, jcol, irow, &col_comm);
+    MPI_Comm_rank(row_comm, &row_id);
+    MPI_Comm_rank(col_comm, &col_id);
+
+    if (col_id == 0)
+        MPI_Scatter(b, k, MPI_INT, local_b, k, MPI_INT, 0, row_comm);
+
+    MPI_Bcast(local_b, k, MPI_INT, 0, col_comm);
+
+    int* MyResult = (int*)malloc(k * sizeof(int));
+    int* Result = (int*)malloc(n * sizeof(int));
+    int index = 0;
+
+    for (i = 0; i < k; i++)
+    {
+        MyResult[i] = 0;
+        for (j = 0; j < k; j++)
+            MyResult[i] += local_a[index++] * local_b[j];
+    }
+
+    MPI_Gather(MyResult, k, MPI_INT, Result, k, MPI_INT, 0, col_comm);
+
+    if (col_id == 0)
+        MPI_Reduce(Result, c, n, MPI_INT, MPI_SUM, 0, row_comm);
+
+    if (rank == 0)
+    {
+        for (i = 0; i < n; i++)
+            printf("c[%d] = %d ", i, c[i]);
+        printf("\n");
+    }
+
+    free(local_a);
+    free(local_b);
+
+    MPI_Finalize();
     return 0;
 }
 
