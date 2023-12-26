@@ -1,16 +1,19 @@
 #pragma once
 
-#include <stdio.h>
+#include "mpi.h"
+#include <cstring>
 #include <iostream>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string>
-#include "mpi.h"
 
 int main(int argc, char* argv[]);
 
 int januarZadatak2A(int argc, char* argv[]);
 
 int januarZadatak2B(int argc, char* argv[]);
+
+int januarZadatak3(int argc, char* argv[]);
 
 int zadatak1(int argc, char* argv[]);
 
