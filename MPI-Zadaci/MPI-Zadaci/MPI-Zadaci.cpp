@@ -1,34 +1,27 @@
-﻿// 1. instalirati msmpisetup i msmpisdk(naći na guglu majkrosoftov sajt...)
-// 2. instalirati c++ desktop development pack preko vs installera
-// 3. kreirati c++ console projekat
-// 4. u glavni c++ dodati #include "mpi.h"
-// 5. project -> properties -> c/c++ -> additional include directiories -> dodamo putanju gde je mpi sdk include folder
-// 6. project -> properties -> linker -> additional library directories -> dodamo putanju do mpi sdk Lib\x86 odnosno
-//    Lib\x64 foldera
-// 7. project -> properties -> Linker -> Input -> Additional dependencies -> ukucamo msmpi.lib
-// 8. apply & build proj
-// 9. otvaramo terminal i pozicioniramo se u debug folder. Komanda za pokretanje je mpiexec -n 5 MPI-Zadaci.exe
-//    Gde je n = 5 procesa
-
-#include "MPI-Zadaci.h"
+﻿#include "MPI-Zadaci.h"
 
 int main(int argc, char* argv[])
 {
     // ISPITNI ZADACI IZ 2023
     // januarZadatak2A(argc, argv);
     // januarZadatak2B(argc, argv);
-    januarZadatak3(argc, argv);
+    // januarZadatak3(argc, argv);
+    aprilZadatak2A(argc, argv);
+    // aprilZadatak2B(argc, argv);
+    // aprilZadatak3(argc, argv);
     
 
 
     //ZADACI SA PREZENTACIJA - NEBITNI & BUĐAVI
-    //zadatak1(argc, argv);
-    //zadatak2(argc, argv);
-    //zadatak3(argc, argv);
-    //zadatak4(argc, argv);
-    //zadatak5(argc, argv);
-    //zadatak6(argc, argv);
-    //zadatak8(argc, argv);
+    // zadatak1(argc, argv);
+    // zadatak2(argc, argv);
+    // zadatak3(argc, argv);
+    // zadatak4(argc, argv);
+    // zadatak5(argc, argv);
+    // zadatak6(argc, argv);
+    // zadatak8(argc, argv);
+
+    return 0;
 }
 int januarZadatak2A(int argc, char* argv[])
 {
@@ -239,7 +232,7 @@ int januarZadatak2B(int argc, char* argv[])
     int rank;                           // id procesa u komunikatoru
     int size;                           // ukupan broj procesa u komunikatoru
 
-    struct Student                      // struktura koju korstimo za čuvanje podataka
+    struct Student                      // struktura koju korstimo za čuvanje podataka u samom programu
     {
         int indeks = 1000;              // broj indeksa studenta
         std::string ime;                // ime studenta
@@ -250,13 +243,16 @@ int januarZadatak2B(int argc, char* argv[])
 
     Student studenti[N];                // niz studenata
 
-    MPI_Datatype studentType;           // tip koji koristimo za razmenu podataka
+    MPI_Datatype studentType;           // izvedeni tip koji koristimo za razmenu podataka takođe struktura
 
+    // elementi potrebni za kreiranje studentType izvedenog tipa
     MPI_Datatype types[5];              // niz tipova koje struktura sadrzi
     int blocklens[5];                   // broj elemenata određenog tipa
+    MPI_Aint base;
     MPI_Aint displacements[5];          // niz pomeraja svakog bloka
 
-    // popuna potrebnih podataka za kreiranje strukture
+    // popuna potrebnih podataka za kreiranje strukture, nije obavezno ovako eksplicitno to uraditi već možemo i u samom
+    // pozivu MPI_Type_struct_create sve, ovo je samo zbog preglednosti
     types[0] = MPI_INT;
     types[1] = MPI_CHAR;
     types[2] = MPI_CHAR;
@@ -267,14 +263,13 @@ int januarZadatak2B(int argc, char* argv[])
     blocklens[2] = 50;
     blocklens[3] = 1;
     blocklens[4] = 1;
-    displacements[0] = offsetof(Student, indeks);
-    displacements[1] = offsetof(Student, ime);
-    displacements[2] = offsetof(Student, prezime);
-    displacements[3] = offsetof(Student, prosecnaOcena);
-    displacements[4] = offsetof(Student, godinaStudija);
 
-    // Napomena: isto se može postići i sa MPI_Address ali je komplikovanije. MPI_Address mora da se koristi kad nemamo
-    // podatke kao strukturu
+    // Napomena: ako nije specifično zahtevano offsetof je daleko jednostavniji od MPI_Address
+    //displacements[0] = offsetof(Student, indeks);
+    //displacements[1] = offsetof(Student, ime);
+    //displacements[2] = offsetof(Student, prezime);
+    //displacements[3] = offsetof(Student, prosecnaOcena);
+    //displacements[4] = offsetof(Student, godinaStudija);
 
     // mpi inicijalizacija
     MPI_Init(&argc, &argv);
@@ -288,6 +283,20 @@ int januarZadatak2B(int argc, char* argv[])
         MPI_Finalize();
         return 0;
     }
+
+    // računanje displacementa za naš izvedeni tip korišćenjem MPI_Address, vidi gore za jednostavniju varijantu
+    // Napomena: MPI_Address je deprecated i zadatak ne radi s njim već koristimo MPI_Get_Address
+    MPI_Get_address(&((Student*)0)->indeks, &base);
+    MPI_Get_address(&((Student*)0)->ime, &displacements[1]);
+    MPI_Get_address(&((Student*)0)->prezime, &displacements[2]);
+    MPI_Get_address(&((Student*)0)->prosecnaOcena, &displacements[3]);
+    MPI_Get_address(&((Student*)0)->godinaStudija, &displacements[4]);
+    displacements[0] = 0;
+    displacements[1] -= base;
+    displacements[2] -= base;
+    displacements[3] -= base;
+    displacements[4] -= base;
+
 
     // napokon kreiramo i potvrđujemo našu strukturu
     MPI_Type_create_struct(5, blocklens, displacements, types, &studentType);
@@ -350,8 +359,8 @@ int januarZadatak3(int argc, char* argv[])
     // upisuju u različite blokove kao na slici (za slučaj od 4 procesa):
     // Obratiti pažnju na efikasnost paralelizacije upisa.
 
-    // Napomena: radi provere tačnosti zadatak je malo izmenjen tako da se prvo popuni file1.dat random vrednostima pre 
-    // čitanja.
+    // Napomena: Potrebno je otkomentarisati deo koda prvi put radi popune fajla file1.dat, a za proveru tačnosti je 
+    // potreban neki hex editor recimo HxD
 
     constexpr int FILESIZE = 10485760;  // veličina fajla koji se čita, u ovom slučaju 10MB = 10 * 1024 * 1024
 
@@ -392,17 +401,17 @@ int januarZadatak3(int argc, char* argv[])
     MPI_Type_contiguous(n, MPI_CHAR, &contigiousType);
     MPI_Type_commit(&contigiousType);
 
-    // VAŽNO! deo koda koji je potrebno otkomentarisati inicijalno radi popune fajla file1.dat
-    MPI_File_open(MPI_COMM_WORLD, "file1.dat", MPI_MODE_CREATE | MPI_MODE_WRONLY, MPI_INFO_NULL, &file1);
-    for (int i = 0; i < n; i++)
-    {
-        buffer[i] = rank;
-    }
-    MPI_File_write_at_all(file1, rank * n, buffer, n, MPI_CHAR, MPI_STATUS_IGNORE);
-    MPI_File_close(&file1);
+    // VAŽNO!!!! deo koda koji je potrebno otkomentarisati inicijalno radi popune fajla file1.dat
+    //MPI_File_open(MPI_COMM_WORLD, "file1.dat", MPI_MODE_CREATE | MPI_MODE_WRONLY, MPI_INFO_NULL, &file1);
+    //for (int i = 0; i < n; i++)
+    //{
+    //    buffer[i] = rank;
+    //}
+    //MPI_File_write_at_all(file1, rank * n, buffer, n, MPI_CHAR, MPI_STATUS_IGNORE);
+    //MPI_File_close(&file1);
 
-    delete[] buffer;
-    buffer = new char[n] {};
+    //delete[] buffer;
+    //buffer = new char[n] {};
 
     // otvaramo fajlove u odgovarajućim modovima
     MPI_File_open(MPI_COMM_WORLD, "file1.dat", MPI_MODE_RDONLY, MPI_INFO_NULL, &file1);
@@ -434,6 +443,46 @@ int januarZadatak3(int argc, char* argv[])
     delete[] buffer;
     return 0;
 }
+
+int aprilZadatak2A(int argc, char* argv[])
+{
+    // Napisati MPI program koji realizuje množenje matrice A dimenzija n x n i vektora B dimenzija n, čime se dobija
+    // rezultujući vektor C dimenzija n, Matrica A i vektor B se inicijalizuju u master procesu. Broj procesa je p i 
+    // uređeni su kao matrica q x q (q ^ 2 = p). Matrica A je podeljena u blokove i master proces distribuira 
+    // odgovarajuće blokove matrice A po procesima kao što je prikazano na slici 1. za n = 8 i p = 16. Vektor b je 
+    // distribuiran po procesima tako da proces Pi dobija elemente sa indeksima i % q, i % q + q, i % q + 2q, ......,
+    // i % q + n - q. Predvideti da se slanje vrednosti bloka matrice A svakom procesu obavlja odjednom. Svaki proces
+    // (uključujući i master proces) obavlja odgovarajuća izračunavanja i učestvuje u generisanju rezultata koji se 
+    // prikazuje u procesu sadrži minimum svih vrednosti u matrici A. Predvideti da se slanje blokova matrice A svakom 
+    // procesu obavlja sa po jednom naredbom MPI_Send kojom se šalje samo jedan izvedeni tip podatka. Slanje blokova 
+    // vektora B i generisanje rezultata impelementirati korišćenjem grupnih operacija i funkcija za kreiranje novih
+    // komunikatora.
+
+    return 0;
+}
+
+int aprilZadatak2B(int argc, char* argv[])
+{
+    // Napisati MPI program koji kreira komunikator koji se sastoji od procesa na dijagonali u kvadratnoj mreži procesa.
+    // Iz master procesa novog komunikatora poslati poruku svim ostalim procesima. Svaki proces novog komunikatora treba
+    // da prikaže primljenu poruku.
+
+    return 0;
+}
+
+int aprilZadatak3(int argc, char* argv[])
+{
+    // Napisati MPI Program koji manipuliše velikom količinom log informacija, tako što vrši paralelni upis i čitanje
+    // binarne log datoteke. Log podaci nalaze se u datoteci file1.dat. Svi podaci vrše čitanje iste količine podataka,
+    // tako da prvi proces čita podatke sa početka fajla, zatim drugi proces one u nastavku, itd. Upravo pročitane
+    // podatke upisati u dve različite datoteke, prema sledećim zahtevima:
+    // a) U datoteku file2.dat upisati podatke tako da se redosled upisa procesa ne može unapred predvideti.
+    // b) U datoteku file3.dat upisati podatke tako da procesi, u redosledu od poslednjeg do prvog, upisuju 1/10 svojih
+    // podataka, po round-robin principu.
+
+    return 0;
+}
+
 
 //int zadatak1(int argc, char* argv[])
 //{
