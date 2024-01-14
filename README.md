@@ -1,5 +1,5 @@
 # Paralelni sistemi
-Uprađeni ispitni zadaci iz predmeta Paralelni sistemi
+Uprađeni ispitni zadaci iz predmeta Paralelni sistemi  
 Elektronski fakultet 2023/24
 
 
