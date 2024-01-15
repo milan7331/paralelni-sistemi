@@ -12,7 +12,11 @@ int main(int argc, char* argv[])
     // zadatak4();
     // zadatak5();
     // zadatak6();
-    zadatak7();
+    // zadatak7();
+    // zadatak8();
+    // zadatak9();
+    zadatak10();
+
 
     return 0;
 }
@@ -191,6 +195,112 @@ int zadatak7()
     pi = step * sum;
     
     std::cout << "Pi sekvencijalno: " << pi << std::endl;
+
+    return 0;
+}
+
+int zadatak8()
+{
+    // paralelni algoritam 1 - numerička integracija
+
+    const int NUM_THREADS = 10;
+
+    static long num_steps = 100000000;
+    double step;
+
+    int i = 0;
+    double x;
+    double pi;
+    double sum = 0.0;
+
+    step = 1.0 / (double)num_steps;
+    omp_set_num_threads(NUM_THREADS);
+
+    #pragma omp parallel private(x)
+    {
+        #pragma omp for
+        for (i = 1; i <= num_steps; i++)
+        {
+            x = (i - 0.5) * step;
+            #pragma omp critical
+            {
+                sum += 4.0 / (1.0 + x * x);
+            }
+        }
+    }
+
+    pi = sum * step;
+    std::cout << "Pi: " << pi << std::endl;
+
+    return 0;
+}
+
+int zadatak9()
+{
+    // paralelni algoritam 2 - numerička integracija
+    // radi mnogo bolje nego prethodni
+    // kritične sekcije nisu poželjne unutar petlji
+    // jer ispada da se onda izvršavaju sekvencijalno
+
+    const int NUM_THREADS = 10;
+
+    static long num_steps = 100000000;
+    double step;
+
+    int i = 0;
+    double x;
+    double pi = 0.0;
+    double sum;
+
+    step = 1.0 / (double)num_steps;
+    omp_set_num_threads(NUM_THREADS);
+
+    #pragma omp parallel private(x, sum)
+    {
+        sum = 0.0;
+        #pragma omp for
+        for (i = 1; i <= num_steps; i++)
+        {
+            x = (i - 0.5) * step;
+            sum += 4.0 / (1.0 + x * x);
+        }   
+        #pragma omp critical
+        {
+            pi += sum * step;
+        }
+    }
+
+    std::cout << "Pi: " << pi << std::endl;
+
+    return 0;
+}
+
+int zadatak10()
+{
+    // paralelni algoritam 3 - numerička integracija
+    // reduction pristup
+    const int NUM_THREADS = 2;
+
+    static long num_steps = 100000000;
+    double step;
+
+    int i;
+    double x;
+    double pi;
+    double sum = 0.0;
+
+    step = 1.0 / (double)num_steps;
+    omp_set_num_threads(NUM_THREADS);
+
+    #pragma omp parallel for reduction(+:sum) private(x)
+    for (i = 1; i <= num_steps; i++)
+    {
+        x = (i - 0.5) * step;
+        sum = sum + 4.0 / (1.0 + x * x);
+    }
+    pi = step * sum;
+
+    std::cout << "Pi: " << pi << std::endl;
 
     return 0;
 }
