@@ -2,6 +2,7 @@
 
 #include <omp.h>
 #include <iostream>
+#include <stdlib.h>
 
 int main(int argc, char* argv[]);
 
@@ -11,12 +12,26 @@ int main(int argc, char* argv[]);
 
 // ZADACI SA PREZENTACIJA
 
-int zadatak1(int argc, char* argv[]);
+int zadatak1();
 
-int zadatak2(int argc, char* argv[]);
+int zadatak2();
 
-int zadatak3(int argc, char* argv[]);
+int zadatak3();
 
-int zadatak4(int argc, char* argv[]);
+int zadatak4();
 
-int zadatak5(int argc, char* argv[]);
+int zadatak5();
+
+int zadatak6();
+
+int zadatak7();
+
+int zadatak8();
+
+int zadatak9();
+
+int zadatak10();
+
+int zadatak11();
+
+int zadatak12();
