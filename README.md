@@ -10,7 +10,7 @@ Ne garantujem da su zadaci 100% ispravni. Ukoliko uočite grešku ili želite ne
 1. Instalirati msmpisetup i msmpisdk (naći na guglu majkrosoftov sajt...).
 2. Instalirati C++ desktop development pack za visual studio (preko vs installera).
 3. Kreirati C++ console projekat.
-4. U glavni C++ dodati #include "mpi.h".
+4. U glavni C++ dodati `#include "mpi.h"`.
 5. Project -> Properties -> C/C++ -> additional include directiories -> dodati putanju gde je mpi sdk include folder (instalacija iz prvog koraka)
 6. Project -> Properties -> Linker -> additional library directories -> dodati putanju do mpi sdk Lib\x64 foldera (obratiti pažnju da u configuration manageru samog projekta piše da pravimo x64 aplikaciju).
 7. Project -> Properties -> Linker -> Input -> Additional dependencies -> ukucati msmpi.lib
@@ -19,7 +19,7 @@ Ne garantujem da su zadaci 100% ispravni. Ukoliko uočite grešku ili želite ne
 
 ## OpenMP
 1. Kreirati C++ projekat.
-2. U glavni C++ fajl dodati #include <omp.h>.
+2. U glavni C++ fajl dodati `#include <omp.h>`.
 3. Project -> Properties -> C/C++ -> Language -> Open MP Support promeniti na Yes.
 4. Pokrenuti normalno kao i svaki drugi console projekat.
 

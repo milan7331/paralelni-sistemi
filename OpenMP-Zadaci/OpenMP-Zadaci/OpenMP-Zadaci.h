@@ -9,6 +9,8 @@ int main(int argc, char* argv[]);
 // ISPITNI ZADACI IZ 2023
 int januarZadatak4();
 
+int aprilZadatak4();
+
 
 // ZADACI SA PREZENTACIJA
 
