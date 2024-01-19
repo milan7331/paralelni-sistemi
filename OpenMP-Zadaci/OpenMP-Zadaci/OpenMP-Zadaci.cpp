@@ -4,7 +4,14 @@ int main(int argc, char* argv[])
 {
     // ISPITNI ZADACI IZ 2023
     // januarZadatak4();
-    aprilZadatak4();
+    // aprilZadatak4();
+    junZadatak4();
+    // jun2Zadatak3();
+    // septembarZadatak3();
+    // oktobarZadatak3();
+    // oktobar2Zadatak3();
+    // decembarZadatak3();
+
 
     // ZADACI SA PREZENTACIJA
     // zadatak1();
@@ -196,6 +203,115 @@ int aprilZadatak4()
     delete[] a;
     delete[] b;
     delete[] c;
+
+    return 0;
+}
+
+int junZadatak4()
+{
+    // Da li je korišćenjem OpenMP direktiva moguće paralelizovati petlju kojom se traži maksimalna vrednost elemenata
+    // niza dužine N, podelom iteracija petlje između različitih niti? Ako jeste, napisati deo koda koji to omogućava
+    // sa i bez korišćenja critical direktive. Razmotriti i objasniti oba slučaja. Obratiti pažnju na efikasnost para-
+    // lelizacije. Dati primer podele iteracija po nitima.
+
+    return 0;
+}
+
+int jun2Zadatak3()
+{
+    // Napisati OpenMP kod koji sadrži sledeću petlju:
+    // 
+    // d = 2;
+    // for (i = 1; i < N; i++)
+    // {
+    //     d = d * z[i];
+    //     a[i] = b[i] * c[pom + N - i - 1] + a[i-1];
+    // }
+    //
+    // Proučiti da li je moguće izvršiti paralelizaciju petlje. Ako nije, obrazložiti i transformisati petlju tako da
+    // paralelizacija bude moguća. Koju vrednost ima promenljiva d, a koje elementi niza a nakon izvršenja petlje?
+    // Testiranjem sekvencijalnog i paralelnog rešenja za proizvoljno N i proizvoljan broj niti, pokazati korektnost
+    // paralelizovanog koda.
+
+    return 0;
+}
+
+int septembarZadatak3()
+{
+    // Napisati OpenMP kod koji sadrži sledeću petlju:
+    //
+    // d = 42;
+    // for (i = N - 2; i >= 0; i--)
+    // {
+    //     d = d / z[i];
+    //     a[i] = b[i] * c[pom + N - i - 1] - a[i + 1];
+    // }
+    //
+    // Proučiti da li je moguće izvršiti paralelizaciju petlje. Ako nije, obrazložiti i transformisati petlju tako da
+    // paralelizacija bude moguća. Koju vrednost ima promenljiva d, a koje elementi niza a nakon izvršenja petlje?
+    // Testiranjem sekvencijalnog i paralelnog rešenja za proizvoljno N i proizvoljan broj niti, pokazati korektnost
+    // paralelizovanog koda.
+
+
+    return 0;
+}
+
+int oktobarZadatak3()
+{
+    // Proučiti da li je moguće izvršiti paralelizaciju sledeće petlje:
+    //
+    // int m = 2;
+    // for (i = 0; i < N; i++)
+    // {
+    //     for (j = 0; j < N; j++)
+    //     {
+    //         a[j] += b[m];
+    //         m += p;
+    //     }
+    // }
+    //
+    // Ako je paralelizacija moguća, napisati OpenMP kod koji sadrži petlju. U suprotnom, obrazložiti zašto 
+    // paralelizacija nije moguća. Razvijanjem petlje sekvencijalnog i paralelnog rešenja i prolaskom kroz iteracije za
+    // proizvoljno N i proizvoljan broj niti, pokazati korektnost paralelizovanog koda.
+
+    return 0;
+}
+
+int oktobar2Zadatak3()
+{
+    // a) Koliko se taskova generiše u navedenom OpenMP primeru i da li je redosled izvršenja taskova definisan ? Obrazložiti.
+    //
+    // omp_set_num_threads(3);
+    // #pragma omp parallel
+    // {
+    //     #pragma omp task
+    //     {
+    //         printf("Task 1\n");
+    //     }
+    //     #pragma omp task
+    //     {
+    //         printf("Task 2\n");
+    //     }
+    // }
+    //
+    // b) Proučiti da li je moguće izvršiti paralelizaciju sledeće petlje:
+    // 
+    // for (i = N - 1; i > 1; i--)
+    // {
+    //     a += okt[i] + okt2[i];
+    //     rok[i] = rok[i - 1] + a;
+    // }
+    //
+    //Ako je paralelizacija moguća (sa ili bez transformacije petlje), napisati OpenMP kod koji sadrži petlju. U suprotnom
+    //obrazložiti zašto paralelizacija nije moguća. Razvijanjem petlje sekvencijalnog i paralelnog rešenja i prolaskom
+    //kroz iteracije za proizvoljno N i proizvoljan broj niti, pokazati korektnost paralelizovanog koda.
+
+    return 0;
+}
+
+int decembarZadatak3()
+{
+    // Implementirati OpenMP C++ rešenje za paralelno množenje dve kvadratne matrice.
 
     return 0;
 }

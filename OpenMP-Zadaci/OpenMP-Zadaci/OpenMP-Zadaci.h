@@ -11,6 +11,17 @@ int januarZadatak4();
 
 int aprilZadatak4();
 
+int junZadatak4();
+
+int jun2Zadatak3();
+
+int septembarZadatak3();
+
+int oktobarZadatak3();
+
+int oktobar2Zadatak3();
+
+int decembarZadatak3();
 
 // ZADACI SA PREZENTACIJA
 
