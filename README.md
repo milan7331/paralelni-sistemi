@@ -5,7 +5,7 @@ Elektronski fakultet 2023/24
 
 Ne garantujem da su zadaci 100% ispravni. Ukoliko uočite grešku ili želite nešto da dodate uradite pull request.
 
-# Setup
+# Setup (za Visual Studio 2022)
 ## MPI
 1. Instalirati msmpisetup i msmpisdk (naći na guglu majkrosoftov sajt...).
 2. Instalirati C++ desktop development pack za visual studio (preko vs installera).
@@ -24,3 +24,6 @@ Ne garantujem da su zadaci 100% ispravni. Ukoliko uočite grešku ili želite ne
 4. Pokrenuti normalno kao i svaki drugi console projekat.
 
 ## CUDA
+1. Instalirati CUDA Toolkit i sve što ide uz installer.
+2. Odabrati CUDA template prilikom kreiranja projekta.
+3. Pokrenuti normalno kao i svaki drugi console projekat.
