@@ -21,9 +21,10 @@ Ne garantujem da su zadaci 100% ispravni. Ukoliko uočite grešku ili želite ne
 1. Kreirati C++ projekat.
 2. U glavni C++ fajl dodati `#include <omp.h>`.
 3. Project -> Properties -> C/C++ -> Language -> Open MP Support promeniti na Yes.
-4. Pokrenuti normalno kao i svaki drugi console projekat.
+3. Kompajlirati i pokrenuti iz Visual Studia normalno kao i svaki drugi console projekat (Proces pokretanja sa komandne linije se razlikuje).
 
 ## CUDA
 1. Instalirati CUDA Toolkit i sve što ide uz installer.
 2. Odabrati CUDA template prilikom kreiranja projekta.
-3. Pokrenuti normalno kao i svaki drugi console projekat.
+3. Uključiti  `#include "cuda_runtime.h"` i `#include "device_launch_parameters.h"`.
+3. Kompajlirati i pokrenuti iz Visual Studia normalno kao i svaki drugi console projekat (Proces pokretanja sa komandne linije se razlikuje).
