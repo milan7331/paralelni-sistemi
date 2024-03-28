@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
     // januarZadatak2A(argc, argv);
     // januarZadatak2B(argc, argv);
     // januarZadatak3(argc, argv);
-    aprilZadatak2A(argc, argv);
+    // aprilZadatak2A(argc, argv);
     // aprilZadatak2B(argc, argv);
     // aprilZadatak3(argc, argv);
     
