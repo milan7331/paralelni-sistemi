@@ -2,7 +2,7 @@
 #define __CUDACC__
 #endif
 
-#include "april2023_zadatak1.cuh"
+#include "april2023zadatak1.cuh"
 
 // Anti-Aliasing je tehnika kojom se popravlja kvalitet slika niske rezolucije. Postoje različiti algoritmi koji
 // rešavaju ovaj problem u zavisnosti od situacije. Neka je dat specifičan slučaj gde je, kao matrica nula i jedinica,
@@ -207,7 +207,7 @@ static int PrintOutSample(float* pic, int x_start, int y_start, int x_size, int 
 	return 0;
 }
 
-int april2023_zadatak1()
+int april2023zadatak1()
 {
 	float picture_a[PICTURE_DIM * PICTURE_DIM];
 	float picture_b[PICTURE_DIM * PICTURE_DIM];

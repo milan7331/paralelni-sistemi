@@ -8,4 +8,4 @@
 
 int main(int argc, char* argv[]);
 
-int april2020_zadatak3(int argc, char* argv[]);
+int april2020zadatak3(int argc, char* argv[]);

@@ -1,4 +1,4 @@
-﻿int april2023Zadatak2A(int argc, char* argv[])
+﻿int april2023zadatak2A(int argc, char* argv[])
 {
     // Napisati MPI program koji realizuje množenje matrice A dimenzija n x n i vektora B dimenzija n, čime se dobija
     // rezultujući vektor C dimenzija n, Matrica A i vektor B se inicijalizuju u master procesu. Broj procesa je p i 
@@ -15,7 +15,7 @@
     return 0;
 }
 
-int april2023Zadatak2B(int argc, char* argv[])
+int april2023zadatak2B(int argc, char* argv[])
 {
     // Napisati MPI program koji kreira komunikator koji se sastoji od procesa na dijagonali u kvadratnoj mreži procesa.
     // Iz master procesa novog komunikatora poslati poruku svim ostalim procesima. Svaki proces novog komunikatora treba
@@ -24,7 +24,7 @@ int april2023Zadatak2B(int argc, char* argv[])
     return 0;
 }
 
-int april2023Zadatak3(int argc, char* argv[])
+int april2023zadatak3(int argc, char* argv[])
 {
     // Napisati MPI Program koji manipuliše velikom količinom log informacija, tako što vrši paralelni upis i čitanje
     // binarne log datoteke. Log podaci nalaze se u datoteci file1.dat. Svi podaci vrše čitanje iste količine podataka,

@@ -2,7 +2,7 @@
 #define __CUDACC__
 #endif
 
-#include "jun2023_zadatak2.cuh"
+#include "jun2023zadatak2.cuh"
 
 // Korišćenjem CUDA tehnologije, u programskom jeziku C/C++ napisati program koji nalazi minimalni element na glavnoj
 // dijagonali kvadratne matrice A dimenzija n x n. Obratiti pažnju na efikasnost paralelizacije. Omogućiti pozivanje
@@ -87,7 +87,7 @@ static bool TestResult(float* A, float* min_element_returned)
 	return true;
 }
 
-int jun2023_zadatak2()
+int jun2023zadatak2()
 {
 	float A[N * N];
 	float min_element_host;

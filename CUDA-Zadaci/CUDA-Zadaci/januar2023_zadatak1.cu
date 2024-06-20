@@ -2,7 +2,7 @@
 #define __CUDACC__
 #endif
 
-#include "januar2023_zadatak1.cuh"
+#include "januar2023zadatak1.cuh"
 
 // Neka je dat CUDA kernel i odgovarajuća funkcija koja ga poziva.
 // __global__ void vecAddKernel(float* A_d, float* B_d, float* C_d, int n)
@@ -166,7 +166,7 @@ static void TestResults(float* A, float* B, float* C, int n)
     std::cout << "Element 768 = " << C[767] << "\n";
 }
 
-int januar2023_zadatak1()
+int januar2023zadatak1()
 {
     const int n = 1000;                 // broj elemenata u svakom nizu
     float A_h[n]{};                     // niz A u glavnoj memoriji procesora ("hosta")

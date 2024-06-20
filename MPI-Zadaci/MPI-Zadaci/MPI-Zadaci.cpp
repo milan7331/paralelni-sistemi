@@ -3,12 +3,12 @@
 int main(int argc, char* argv[])
 {
     // ISPITNI ZADACI IZ 2023.
-    // januar2023Zadatak2A(argc, argv);
-    // januar2023Zadatak2B(argc, argv);
-    // januar2023Zadatak3(argc, argv);
-	// april2023Zadatak2A(argc, argv);
-	// april2023Zadatak2B(argc, argv);
-	// april2023Zadatak3(argc, argv);
+    // januar2023zadatak2A(argc, argv);
+    // januar2023zadatak2B(argc, argv);
+    // januar2023zadatak3(argc, argv);
+	// april2023zadatak2A(argc, argv);
+	// april2023zadatak2B(argc, argv);
+	// april2023zadatak3(argc, argv);
 
     // ISPITNI ZADACI IZ 2024. 
 
@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     return 0;
 }
 
-int april2020_zadatak3(int argc, char* argv[])
+int april2020zadatak3(int argc, char* argv[])
 {
 	//ima greške...
 

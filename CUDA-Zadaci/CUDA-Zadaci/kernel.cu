@@ -1,14 +1,10 @@
-﻿#include "cuda_common.h"
-
-#include "januar2023_zadatak1.cuh"
-#include "april2023_zadatak1.cuh"
-#include "jun2023_zadatak2.cuh"
+﻿#include "kernel.cuh"
 
 int main()
 {
     // januar2023zadatak1();
-    // april2023_zadatak1();
-    jun2023_zadatak2();
+    // april2023zadatak1();
+    jun2023zadatak2();
 
     return 0;
 }

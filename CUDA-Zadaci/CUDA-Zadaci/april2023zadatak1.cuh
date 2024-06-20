@@ -10,4 +10,4 @@ static int FillPictures(float* pic_a, float* pic_b);
 
 static int PrintOutSample(float* pic, int x_start, int y_start, int x_size, int y_size);
 
-int april2023_zadatak1();
+int april2023zadatak1();

@@ -11,4 +11,4 @@ static int FillMatrix(float* A);
 
 static bool TestResult(float* A, float* min_element_returned);
 
-int jun2023_zadatak2();
+int jun2023zadatak2();

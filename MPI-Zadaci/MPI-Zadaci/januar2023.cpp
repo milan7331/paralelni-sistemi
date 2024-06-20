@@ -1,6 +1,6 @@
 ﻿#include "januar2023.h"
 
-int januar2023Zadatak2A(int argc, char* argv[])
+int januar2023zadatak2A(int argc, char* argv[])
 {
     // Napisati MPI program koji realizuje množenje matrice A dimenzija n x n i matrice B dimenzija n x n, čime se dobija
    // rezultujuća matrica C. Program pronalazi i prikazuje maksimalni element u rezultujućoj matrici, kao i
@@ -194,7 +194,7 @@ int januar2023Zadatak2A(int argc, char* argv[])
     return 0;
 }
 
-int januar2023Zadatak2B(int argc, char* argv[])
+int januar2023zadatak2B(int argc, char* argv[])
 {
 // Napisati MPI program kojim se podaci o nizu studenata koji se unose sa tastature u master procesu, prosleđuju
 // odjednom svim procesima u komunikatoru MPI_COMM_WORLD. Za svakog studenta se pamte: broj indeksa (int), ime
@@ -326,7 +326,7 @@ int januar2023Zadatak2B(int argc, char* argv[])
     return 0;
 }
 
-int januar2023Zadatak3(int argc, char* argv[])
+int januar2023zadatak3(int argc, char* argv[])
 {
 // Napomena: zadatak ima sliku!
  // Datoteka file1.dat sadrži ukupno 10MB prikupljenih zapisa o mrežnom saobraćaju. Napisati MPI program koji vrši

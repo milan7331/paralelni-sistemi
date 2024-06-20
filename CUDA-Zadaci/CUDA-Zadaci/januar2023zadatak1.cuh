@@ -10,4 +10,4 @@ static int vecAdd(float* A, float* B, float* C, int n);
 
 static void TestResults(float* A, float* B, float* C, int n);
 
-int januar2023_zadatak1();
+int januar2023zadatak1();

@@ -128,10 +128,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="april2023.cpp" />
+    <ClCompile Include="decembar2023.cpp" />
+    <ClCompile Include="januar2023.cpp" />
+    <ClCompile Include="jun2023.cpp" />
+    <ClCompile Include="jun22023.cpp" />
+    <ClCompile Include="oktobar2023.cpp" />
+    <ClCompile Include="oktobar22023.cpp" />
     <ClCompile Include="OpenMP-Zadaci.cpp" />
+    <ClCompile Include="racunske.cpp" />
+    <ClCompile Include="septembar2023.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="april2023.h" />
+    <ClInclude Include="common.h" />
+    <ClInclude Include="decembar2023.h" />
+    <ClInclude Include="januar2023.h" />
+    <ClInclude Include="jun2023.h" />
+    <ClInclude Include="jun22023.h" />
+    <ClInclude Include="oktobar2023.h" />
+    <ClInclude Include="oktobar22023.h" />
     <ClInclude Include="OpenMP-Zadaci.h" />
+    <ClInclude Include="racunske.h" />
+    <ClInclude Include="septembar2023.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

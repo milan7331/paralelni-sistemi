@@ -13,15 +13,78 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\2023">
+      <UniqueIdentifier>{9960fa0a-ef73-42c2-a1b4-6a88ab5aa1e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\2023">
+      <UniqueIdentifier>{285580db-3150-401e-966f-3a5ce39cd59c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="OpenMP-Zadaci.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="racunske.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="januar2023.cpp">
+      <Filter>Source Files\2023</Filter>
+    </ClCompile>
+    <ClCompile Include="april2023.cpp">
+      <Filter>Source Files\2023</Filter>
+    </ClCompile>
+    <ClCompile Include="jun2023.cpp">
+      <Filter>Source Files\2023</Filter>
+    </ClCompile>
+    <ClCompile Include="jun22023.cpp">
+      <Filter>Source Files\2023</Filter>
+    </ClCompile>
+    <ClCompile Include="septembar2023.cpp">
+      <Filter>Source Files\2023</Filter>
+    </ClCompile>
+    <ClCompile Include="oktobar2023.cpp">
+      <Filter>Source Files\2023</Filter>
+    </ClCompile>
+    <ClCompile Include="oktobar22023.cpp">
+      <Filter>Source Files\2023</Filter>
+    </ClCompile>
+    <ClCompile Include="decembar2023.cpp">
+      <Filter>Source Files\2023</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="OpenMP-Zadaci.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="januar2023.h">
+      <Filter>Header Files\2023</Filter>
+    </ClInclude>
+    <ClInclude Include="april2023.h">
+      <Filter>Header Files\2023</Filter>
+    </ClInclude>
+    <ClInclude Include="racunske.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jun2023.h">
+      <Filter>Header Files\2023</Filter>
+    </ClInclude>
+    <ClInclude Include="jun22023.h">
+      <Filter>Header Files\2023</Filter>
+    </ClInclude>
+    <ClInclude Include="septembar2023.h">
+      <Filter>Header Files\2023</Filter>
+    </ClInclude>
+    <ClInclude Include="oktobar2023.h">
+      <Filter>Header Files\2023</Filter>
+    </ClInclude>
+    <ClInclude Include="oktobar22023.h">
+      <Filter>Header Files\2023</Filter>
+    </ClInclude>
+    <ClInclude Include="decembar2023.h">
+      <Filter>Header Files\2023</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
