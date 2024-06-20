@@ -77,12 +77,16 @@
     </CudaCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CudaCompile Include="januar2023zadatak1.cu" />
+    <CudaCompile Include="april2023_zadatak1.cu" />
+    <CudaCompile Include="januar2023_zadatak1.cu" />
+    <CudaCompile Include="jun2023_zadatak2.cu" />
     <CudaCompile Include="kernel.cu" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cuda-common.h" />
-    <ClInclude Include="januar2023zadatak1.cuh" />
+    <ClInclude Include="april2023_zadatak1.cuh" />
+    <ClInclude Include="cuda_common.h" />
+    <ClInclude Include="januar2023_zadatak1.cuh" />
+    <ClInclude Include="jun2023_zadatak2.cuh" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

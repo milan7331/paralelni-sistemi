@@ -4,7 +4,13 @@
     <CudaCompile Include="kernel.cu">
       <Filter>Source Files</Filter>
     </CudaCompile>
-    <CudaCompile Include="januar2023zadatak1.cu">
+    <CudaCompile Include="januar2023_zadatak1.cu">
+      <Filter>Source Files</Filter>
+    </CudaCompile>
+    <CudaCompile Include="april2023_zadatak1.cu">
+      <Filter>Source Files</Filter>
+    </CudaCompile>
+    <CudaCompile Include="jun2023_zadatak2.cu">
       <Filter>Source Files</Filter>
     </CudaCompile>
   </ItemGroup>
@@ -17,10 +23,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cuda-common.h">
+    <ClInclude Include="cuda_common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="januar2023zadatak1.cuh">
+    <ClInclude Include="januar2023_zadatak1.cuh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="april2023_zadatak1.cuh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jun2023_zadatak2.cuh">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,10 +2,9 @@
 #define __CUDACC__
 #endif
 
-#include "cuda-common.h"
-#include "januar2023zadatak1.cuh"
+#include "januar2023_zadatak1.cuh"
 
-//Neka je dat CUDA kernel i odgovarajuća funkcija koja ga poziva.
+// Neka je dat CUDA kernel i odgovarajuća funkcija koja ga poziva.
 // __global__ void vecAddKernel(float* A_d, float* B_d, float* C_d, int n)
 // {
 //     int i = threadIdx.x + blockDim.x * blockIdx.x;
@@ -108,12 +107,13 @@ static int vecAdd(float* A, float* B, float* C, int n)
     float* B_d = nullptr;               // pokazivač na niz B u memoriji device-a / grafičke kartice
     float* C_d = nullptr;               // pokazivač na niz C u memoriji device-a / grafičke kartice
 
-    int size = n * sizeof(float);       // veličina niza u bajtovima
+    int size;                           // veličina niza u bajtovima
     int blockCount;                     // potreban broj blokova se računa u odnosu na broj elemenata zadatih nizova
                                         // zbog ograničenja broja tredova po bloku
         
     // inicijalizacija
-    blockCount = ceil((float)n / (float)BLK_SIZE);
+    size = n * sizeof(float);
+    blockCount = (int)ceil((float)n / (float)BLK_SIZE);
 
     // cuda alokacija memorije i prenos nizova u globalnu memoriju grafičke kartice
     cudaMalloc((void**)&A_d, size);
@@ -137,7 +137,7 @@ static int vecAdd(float* A, float* B, float* C, int n)
     return 0;
 }
 
-static void testResults(float* A, float* B, float* C, int n)
+static void TestResults(float* A, float* B, float* C, int n)
 {
     // Napomena: skroz nepotrebna funkcija, služi samo za proveru tačnosti prilikom pisanja koda
 
@@ -166,7 +166,7 @@ static void testResults(float* A, float* B, float* C, int n)
     std::cout << "Element 768 = " << C[767] << "\n";
 }
 
-int januar2023zadatak1()
+int januar2023_zadatak1()
 {
     const int n = 1000;                 // broj elemenata u svakom nizu
     float A_h[n]{};                     // niz A u glavnoj memoriji procesora ("hosta")
@@ -181,7 +181,7 @@ int januar2023zadatak1()
     vecAdd(A_h, B_h, C_h, n);
 
     // dodatna metoda za proveru tačnosti - nije potrebna
-    testResults(A_h, B_h, C_h, n);
+    TestResults(A_h, B_h, C_h, n);
 
     return 0;
 }

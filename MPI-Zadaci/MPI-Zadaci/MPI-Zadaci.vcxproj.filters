@@ -13,14 +13,41 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\2023">
+      <UniqueIdentifier>{be7c68fa-0cd0-46d1-b084-f4e9da59d489}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\2023">
+      <UniqueIdentifier>{c7745bc1-494d-4534-b0ff-459b11745e52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MPI-Zadaci.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="april2023.cpp">
+      <Filter>Source Files\2023</Filter>
+    </ClCompile>
+    <ClCompile Include="januar2023.cpp">
+      <Filter>Source Files\2023</Filter>
+    </ClCompile>
+    <ClCompile Include="racunske.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MPI-Zadaci.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="april2023.h">
+      <Filter>Header Files\2023</Filter>
+    </ClInclude>
+    <ClInclude Include="januar2023.h">
+      <Filter>Header Files\2023</Filter>
+    </ClInclude>
+    <ClInclude Include="racunske.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
