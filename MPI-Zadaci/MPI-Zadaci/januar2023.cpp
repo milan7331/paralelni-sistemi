@@ -3,16 +3,18 @@
 int januar2023zadatak2A(int argc, char* argv[])
 {
     // Napisati MPI program koji realizuje množenje matrice A dimenzija n x n i matrice B dimenzija n x n, čime se dobija
-   // rezultujuća matrica C. Program pronalazi i prikazuje maksimalni element u rezultujućoj matrici, kao i
-   // identifikator procesa koji ga sadrži. Matrice A i B se inicijalizuju u master procesu. Matrica A je podeljena na
-   // blokove od po k vrsta (k je zadata konstanta i n je deljivo sa k), a matrica B podeljena u blokove od po k kolona.
-   // Master proces distribuira odgovarajuće blokove matrica A i odgovarajuće blokove matrice B procesima radnicima.
-   // Ukupan broj procesa je (n/k) ^ 2. Svaki proces obavlja odgovarajuća izračunavanja i učestvuje u generisanju
-   // rezultata koji se prikazuje u master procesu. Predvideti da se slanje blokova od po k vrsta matrice A i od po k
-   // kolona matrice B svakom procesu odvija sa po jednom naredbom MPI_Send kojom se šalje samo jedan izvedeni tip
-   // podatka. Za ostatak izračunavanja koristiti grupne operacije.
+    // rezultujuća matrica C. Program pronalazi i prikazuje maksimalni element u rezultujućoj matrici, kao i
+    // identifikator procesa koji ga sadrži. Matrice A i B se inicijalizuju u master procesu. Matrica A je podeljena na
+    // blokove od po k vrsta (k je zadata konstanta i n je deljivo sa k), a matrica B podeljena u blokove od po k kolona.
+    // Master proces distribuira odgovarajuće blokove matrica A i odgovarajuće blokove matrice B procesima radnicima.
+    // Ukupan broj procesa je (n/k) ^ 2. Svaki proces obavlja odgovarajuća izračunavanja i učestvuje u generisanju
+    // rezultata koji se prikazuje u master procesu. Predvideti da se slanje blokova od po k vrsta matrice A i od po k
+    // kolona matrice B svakom procesu odvija sa po jednom naredbom MPI_Send kojom se šalje samo jedan izvedeni tip
+    // podatka. Za ostatak izračunavanja koristiti grupne operacije.
 
-   // Napomena: predviđeno je da se zadatak pokreće sa nProcs = 25!
+    // Napomena: predviđeno je da se zadatak pokreće sa nProcs = 25.
+    // Napomena: Maksimalnu vrednost verovatno ne treba računati kao ovde? Verovatno postoji jednostavnije rešenje.
+   
 
     constexpr int N = 10;               // dimenzija kvadratne matrice
     constexpr int K = 2;                // velicina bloka 

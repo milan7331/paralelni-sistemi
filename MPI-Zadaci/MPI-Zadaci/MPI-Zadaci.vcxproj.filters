@@ -19,6 +19,12 @@
     <Filter Include="Source Files\2023">
       <UniqueIdentifier>{c7745bc1-494d-4534-b0ff-459b11745e52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\2024">
+      <UniqueIdentifier>{cdd91c82-7c9a-4f3a-aa42-9309a7c9fc25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\2024">
+      <UniqueIdentifier>{74d2bda4-5280-4baf-ae28-51a742ef383f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MPI-Zadaci.cpp">
@@ -32,6 +38,9 @@
     </ClCompile>
     <ClCompile Include="racunske.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="jun2024.cpp">
+      <Filter>Source Files\2024</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +58,9 @@
     </ClInclude>
     <ClInclude Include="racunske.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="jun2024.h">
+      <Filter>Header Files\2024</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
