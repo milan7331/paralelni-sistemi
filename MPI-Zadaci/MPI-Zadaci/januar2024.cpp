@@ -12,27 +12,26 @@ int januar2024zadatak1(int argc, char* argv[])
     // procesa. Napisati na koji način se iz komandne linije vrši startovanje napisane MPI aplikacije.
     // Napomena: Smatrati da su matrica i vektor dovoljnih dimenzija za uspešno množenje, za izabrani broj procesa.
 
-    // !!!!!!Napomena: napiši kako uvek poslednji proces učitava najviše i nema potrebe za nekom dodatnom logikom
-
     // Napomena: zadatak se pokreće sa brojem procesa nProcs = 3
     // Napomena: Potrebno je promeniti i k ako se menja broj procesa. k = (2 ^ n) - 1
+    // Ovo ograničenje može da se izbegne ako sve potrebne matrice/nizove alociramo dinamički ali ko ima vreme za to :)
 
     constexpr int k = 7;                // broj redova matrice
     constexpr int n = 4;                // broj kolona matrice, ujedno i dužina vektora (broj redova)
 
 
-    int A[k][n]{};						// glavna matrica A koja se prosleđuje procesima
+    int A[k][n]{};                      // glavna matrica A koja se prosleđuje procesima
     int b[n]{};                         // vektor b koji se prosleđuje procesima u celosti
-    int d[k]{};							// rezultujući vektor d
+    int d[k]{};                         // rezultujući vektor d
 
-    int pRows;							// broj redova matrice koje dobija svaki proces za izračunavanje
+    int pRows;                          // broj redova matrice koje dobija svaki proces za izračunavanje
     int* localA;                        // pointer na lokalnu matricu koju procesi koriste za prihvatanje dela matrice A
                                         // veličina ove matrice se menja u odnosu na id procesa, tj. pRows.
     int* localD;                        // pointer na parcijalni rezultat koji izračunava svaki proces. veličina ovog
                                         // vektora se menja u odnosu na id procesa, tj. pRows
 
     int rank;                           // identifikator procesa u glavnom komunikatoru MPI_COMM_WORLD
-    int nProcs;							// broj procesa u glavnom comm, ujedno i broj procesa koji izvršava program
+    int nProcs;                         // broj procesa u glavnom comm, ujedno i broj procesa koji izvršava program
 
     MPI_Datatype sendRowsType;
 
@@ -58,24 +57,6 @@ int januar2024zadatak1(int argc, char* argv[])
         {
             b[i] = 1+ i * 2;
         }
-
-
-        //// testt
-        //for (auto i = 0; i < k; i++)
-        //{
-        //    for (auto j = 0; j < n; j++)
-        //    {
-        //        std::cout << A[i][j] << " ";
-        //    }
-        //    std::cout << std::endl;
-        //}
-        //
-        //std::cout << "vektor b:" << std::endl;
-        //for (auto i = 0; i < n; i++)
-        //{
-        //    std::cout << b[i];
-        //}
-        //std::cout << std::endl;
     }
     
     // Procesi računaju koliko redova matrice A obrađuju na osnovu njihovog ranka
@@ -116,25 +97,6 @@ int januar2024zadatak1(int argc, char* argv[])
             localD[i] += localA[i * n + j] * b[j];
         }
     }
-
-
-
-    //test procesi ispisuju svoje lokalne matrice i među rezultat
-    //std::cout << "Proces id :" << rank << "sadrži sledeće matrice localA i localD:" << std::endl;
-    //for (auto i = 0; i < pRows; i++)
-    //{
-    //    for (auto j = 0; j < n; j++)
-    //    {
-    //        std::cout << localA[i * n + j] << " ";
-    //    }
-    //    std::cout << std::endl;
-    //}
-    //std::cout << std::endl;
-    //for (auto i = 0; i < pRows; i++)
-    //{
-    //    std::cout << localD[i] << " ";
-    //}
-    //std::cout << std::endl;
 
     // Dalje je potrebno odrediti lokaciju (id) rezultujućeg vektora, to možemo da odradimo na više načina:
     // 1. na osnovu vrednosti pRows, koristeći MPI_Reduce sa MPI_MAX operacijom + MPI_Bcast da prosledimo svima max el.
