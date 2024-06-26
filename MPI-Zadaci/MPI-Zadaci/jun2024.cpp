@@ -31,7 +31,7 @@ int jun2024zadatak1(int argc, char* argv[])
 	double M;                           // Krajnji rezultat
 
 	double_int localMax;                // maksimalni element koji je proces pročitao iz fajla + id procesa                 
-	double_int globalMax;					// globalni maksimum + id procesa
+	double_int globalMax;				// globalni maksimum + id procesa
 
 	double localSum;					// lokalni zbir elemenata pročitanih iz fajla
 	double globalSum;					// globalni zbir svih elemenata pročitanih iz fajla
@@ -94,7 +94,7 @@ int jun2024zadatak1(int argc, char* argv[])
 	}
 	MPI_Reduce(&localMax, &globalMax, 1, MPI_DOUBLE_INT, MPI_MAXLOC, 0, MPI_COMM_WORLD);
 	MPI_Barrier(MPI_COMM_WORLD);
-	MPI_Bcast(&globalMax, 2, MPI_DOUBLE_INT, 0, MPI_COMM_WORLD);
+	MPI_Bcast(&globalMax, 1, MPI_DOUBLE_INT, 0, MPI_COMM_WORLD);
 
 	// Procesi vrše izračunavanje lokalno i kasnije šalju procesu koji ima max element iz učitanog niza.
 	for (auto i = 0; i < count; i++)

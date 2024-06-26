@@ -42,6 +42,9 @@
     <ClCompile Include="jun2024.cpp">
       <Filter>Source Files\2024</Filter>
     </ClCompile>
+    <ClCompile Include="januar2024.cpp">
+      <Filter>Source Files\2024</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MPI-Zadaci.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="jun2024.h">
+      <Filter>Header Files\2024</Filter>
+    </ClInclude>
+    <ClInclude Include="januar2024.h">
       <Filter>Header Files\2024</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,5 +1,11 @@
 ﻿#include "januar2023.h"
 
+static struct double_int                // struktura koju koristimo za pronalazak maksimalne vrednosti
+{
+    double value = 0;                   // max vrednost
+    int rank = 0;                       // lokacija - id procesa koji sadrži ovu vrednost
+};
+
 int januar2023zadatak2A(int argc, char* argv[])
 {
     // Napisati MPI program koji realizuje množenje matrice A dimenzija n x n i matrice B dimenzija n x n, čime se dobija
@@ -44,14 +50,8 @@ int januar2023zadatak2A(int argc, char* argv[])
     MPI_Comm rowComm;                   // kanal za komunikaciju procesa u istom redu
     MPI_Comm colComm;                   // kanal za komunikaciju procesa u istoj koloni
 
-    struct MaxValue                     // struktura koju koristimo za pronalazak maksimalne vrednosti
-    {
-        double value = 0;               // max vrednost
-        int rank = 0;                   // lokacija - id procesa koji sadrži ovu vrednost
-    };
-
-    MaxValue localMaxValue;             // struktura koja sadrži maksimalni element u procesu
-    MaxValue globalMaxValue;            // struktura koja sadrži globalni maksimum
+    double_int localMax;                // struktura koja sadrži maksimalni element u procesu
+    double_int globalMax;               // struktura koja sadrži globalni maksimum
 
     // mpi inicijalizacija
     MPI_Init(&argc, &argv);
@@ -148,16 +148,16 @@ int januar2023zadatak2A(int argc, char* argv[])
     }
 
     // Drugi deo zadatka gde pronalazimo maksimalnu vrednost i id procesa
-    localMaxValue.rank = rank;
-    localMaxValue.value = localC[0][0];
+    localMax.rank = rank;
+    localMax.value = localC[0][0];
 
     for (int i = 0; i < K; i++)
     {
         for (int j = 0; j < K; j++)
         {
-            if (localMaxValue.value < localC[i][j])
+            if (localMax.value < localC[i][j])
             {
-                localMaxValue.value = localC[i][j];
+                localMax.value = localC[i][j];
             }
         }
     }
@@ -165,7 +165,9 @@ int januar2023zadatak2A(int argc, char* argv[])
     // vraćamo max vrednost master procesu
     // napomena: postoji i drugi način da se ovo odradi tako što master procesu šaljemo samo max element i onda
     // broadcastujemo taj max element svim procesima -> ako proces sadrži globalni masksimalni element ispisuje rank
-    MPI_Reduce(&localMaxValue, &globalMaxValue, 1, MPI_DOUBLE_INT, MPI_MAXLOC, 0, MPI_COMM_WORLD);
+    // napomena: postoji i treći način da se ovo odradi, ujedno i najlakši -> master proces pronalazi master element i
+    // onda na osnovu njegove lokacije u matrici zaključuje računicom kom procesu pripada (delimo sa q??).
+    MPI_Reduce(&localMax, &globalMax, 1, MPI_DOUBLE_INT, MPI_MAXLOC, 0, MPI_COMM_WORLD);
 
     // rezultati
     // ispisujemo rezultujuću matricu na kraju množenja zatim ispisujemo maksimalni element i id procesa koji ga sadrzi
@@ -183,8 +185,8 @@ int januar2023zadatak2A(int argc, char* argv[])
         }
 
         std::cout << std::endl;
-        std::cout << "Maksimalni element (" << globalMaxValue.value << ")";
-        std::cout << " sadrži proces: " << globalMaxValue.rank << std::endl;
+        std::cout << "Maksimalni element (" << globalMax.value << ")";
+        std::cout << " sadrži proces: " << globalMax.rank << std::endl;
     }
 
     // kraj zadatka oslobađamo memoriju
