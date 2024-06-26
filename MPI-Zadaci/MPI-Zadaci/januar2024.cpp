@@ -12,9 +12,10 @@ int januar2024zadatak1(int argc, char* argv[])
     // procesa. Napisati na koji način se iz komandne linije vrši startovanje napisane MPI aplikacije.
     // Napomena: Smatrati da su matrica i vektor dovoljnih dimenzija za uspešno množenje, za izabrani broj procesa.
 
-    // Napomena: zadatak se pokreće sa brojem procesa nProcs = 3
+    // Napomena: zadatak se trenutno pokreće sa brojem procesa nProcs = 3
     // Napomena: Potrebno je promeniti i k ako se menja broj procesa. k = (2 ^ n) - 1
-    // Ovo ograničenje može da se izbegne ako sve potrebne matrice/nizove alociramo dinamički ali ko ima vreme za to :)
+    // Ovo ograničenje može da se izbegne ako sve potrebne matrice/nizove alociramo dinamički i naknadno računamo k po 
+    // formuli ali ko ima vreme za to :)
 
     constexpr int k = 7;                // broj redova matrice
     constexpr int n = 4;                // broj kolona matrice, ujedno i dužina vektora (broj redova)
@@ -98,19 +99,33 @@ int januar2024zadatak1(int argc, char* argv[])
         }
     }
 
-    // Dalje je potrebno odrediti lokaciju (id) rezultujućeg vektora, to možemo da odradimo na više načina:
-    // 1. na osnovu vrednosti pRows, koristeći MPI_Reduce sa MPI_MAX operacijom + MPI_Bcast da prosledimo svima max el.
-    // 2. možemo da koristimo MPI_Reduce sa MPI_MAXLOC operacijom i odgovarajućom strukturom.
-    // 3. intuitivno možemo da zaključimo da će proces sa najvećim indeksom (poslednji u komunikatoru) učitati najviše
-    //    redova zato što je pRows = 2 ^ i rastuća funkcija.
-    // Biramo 3. način jer je najprostiji.
+    // Dalje je potrebno odrediti lokaciju (id) rezultujućeg vektora, intuitivno možemo da zaključimo da će proces sa
+    // najvećim indeksom (poslednji u komunikatoru) učitati najviše redova zato što je pRows = 2 ^ i rastuća funkcija.
+    
     // Poslednjem procesu šaljemo odgovarajuće delove rezultujuće matrice.
-    MPI_Gather(localD, pRows, MPI_INT, d, n, MPI_INT, nProcs - 1, MPI_COMM_WORLD);
+    // Napomena: funkcija MPI_Gatherv se koristi kada se šalju podaci različitih dimenzija ali to nije rađeno na vežbama
+    if (rank != nProcs - 1)
+    {
+        MPI_Send(localD, pRows, MPI_INT, nProcs - 1, 2, MPI_COMM_WORLD);
+    }
+    else
+    {
+        int pRowsTemp = 0;
+        for (auto i = 0; i < nProcs - 1; i++)
+        {
+            pRowsTemp = static_cast<int>(pow(2, i));
+            MPI_Recv(&d[pRowsTemp - 1], pRowsTemp, MPI_INT, i, 2, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+        }
+        for (auto i = 0; i < pRows; i++)
+        {
+            d[pRows - 1 + i] = localD[i];
+        }
+    }
 
     // Proces koji je sadrži krajnji rezultat ga ispisuje na ekran
     if (rank == nProcs - 1)
     {
-        for (auto i = 0; i < n; i++)
+        for (auto i = 0; i < k; i++)
         {
             std::cout << d[i] << " ";
         }
