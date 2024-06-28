@@ -5,7 +5,6 @@ static struct double_int
     double value;
     int rank;
 };
-static int mpiWrite(int argc, char* argv[]);
 
 int jun2024zadatak1(int argc, char* argv[])
 {
@@ -118,7 +117,7 @@ int jun2024zadatak1(int argc, char* argv[])
 }
 
 // Helper metoda za upis u fajl / generisanje fajla potrebnog za zadatak.
-static int mpiWrite(int argc, char* argv[])
+int mpiWriteJun2024(int argc, char* argv[])
 {
     constexpr int arr_size = 100;
     double array[arr_size]{};

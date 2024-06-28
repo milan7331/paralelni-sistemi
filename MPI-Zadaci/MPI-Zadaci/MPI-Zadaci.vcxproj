@@ -134,6 +134,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="april2023.cpp" />
+    <ClCompile Include="april2024.cpp" />
+    <ClCompile Include="decembar2023.cpp" />
     <ClCompile Include="januar2023.cpp" />
     <ClCompile Include="januar2024.cpp" />
     <ClCompile Include="jun2024.cpp" />
@@ -142,7 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="april2023.h" />
+    <ClInclude Include="april2024.h" />
     <ClInclude Include="common.h" />
+    <ClInclude Include="decembar2023.h" />
     <ClInclude Include="januar2023.h" />
     <ClInclude Include="januar2024.h" />
     <ClInclude Include="jun2024.h" />

@@ -1,5 +1,4 @@
 #pragma once
-
 #include "common.h"
 
 static struct double_int;

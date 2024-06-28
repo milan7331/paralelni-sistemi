@@ -1,5 +1,4 @@
 #pragma once
-
 #include "common.h"
 
 int april2023zadatak2A(int argc, char* argv[]);
