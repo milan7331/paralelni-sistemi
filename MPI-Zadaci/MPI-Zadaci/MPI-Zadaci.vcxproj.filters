@@ -25,6 +25,12 @@
     <Filter Include="Header Files\2024">
       <UniqueIdentifier>{74d2bda4-5280-4baf-ae28-51a742ef383f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\2022">
+      <UniqueIdentifier>{851c86cd-1809-4777-b4c3-cef0511dd2f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\2022">
+      <UniqueIdentifier>{35b54bd3-cbce-48f5-9ba7-71be18ca3f03}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MPI-Zadaci.cpp">
@@ -50,6 +56,9 @@
     </ClCompile>
     <ClCompile Include="decembar2023.cpp">
       <Filter>Source Files\2023</Filter>
+    </ClCompile>
+    <ClCompile Include="jun2022.cpp">
+      <Filter>Source Files\2022</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="decembar2023.h">
       <Filter>Header Files\2023</Filter>
+    </ClInclude>
+    <ClInclude Include="jun2022.h">
+      <Filter>Header Files\2022</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

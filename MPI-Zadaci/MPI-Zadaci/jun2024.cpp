@@ -1,6 +1,6 @@
 ﻿#include "jun2024.h"
 
-static struct double_int
+struct double_int
 {
     double value;
     int rank;

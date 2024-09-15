@@ -3,6 +3,7 @@
 #include "common.h"
 
 #include "racunske.h"
+#include "jun2022.h"
 #include "januar2023.h"
 #include "april2023.h"
 #include "decembar2023.h"

@@ -1,6 +1,6 @@
 ﻿#include "januar2023.h"
 
-static struct double_int                // struktura koju koristimo za pronalazak maksimalne vrednosti
+struct double_int                       // struktura koju koristimo za pronalazak maksimalne vrednosti
 {
     double value = 0;                   // max vrednost
     int rank = 0;                       // lokacija - id procesa koji sadrži ovu vrednost
@@ -227,10 +227,10 @@ int januar2023zadatak2B(int argc, char* argv[])
     MPI_Datatype studentType;           // izvedeni tip koji koristimo za razmenu podataka takođe struktura
 
     // elementi potrebni za kreiranje studentType izvedenog tipa
-    MPI_Datatype types[5];              // niz tipova koje struktura sadrzi
-    int blocklens[5];                   // broj elemenata određenog tipa
+    MPI_Datatype types[5]{};            // niz tipova koje struktura sadrzi
+    int blocklens[5]{};                 // broj elemenata određenog tipa
     MPI_Aint base;
-    MPI_Aint displacements[5];          // niz pomeraja svakog bloka
+    MPI_Aint displacements[5]{};        // niz pomeraja svakog bloka
 
     // popuna potrebnih podataka za kreiranje strukture, nije obavezno ovako eksplicitno to uraditi već možemo i u samom
     // pozivu MPI_Type_struct_create sve, ovo je samo zbog preglednosti
@@ -259,7 +259,7 @@ int januar2023zadatak2B(int argc, char* argv[])
 
     if (size < 2)
     {
-        std::cout << "Potrebno je program pokrenuti sa većim brojem procesa!";
+        std::cout << "Potrebno je program pokrenuti sa vecim brojem procesa!";
         std::cout << std::endl;
         MPI_Finalize();
         return 0;
@@ -296,7 +296,7 @@ int januar2023zadatak2B(int argc, char* argv[])
             std::cin >> studenti[i].ime;
             std::cout << "Prezime: ";
             std::cin >> studenti[i].prezime;
-            std::cout << "Prosečna ocena: ";
+            std::cout << "Prosecna ocena: ";
             std::cin >> studenti[i].prosecnaOcena;
             std::cout << "Godina studija: ";
             std::cin >> studenti[i].godinaStudija;
@@ -311,14 +311,14 @@ int januar2023zadatak2B(int argc, char* argv[])
     // radi provere ispravnosti programa uzimamo da jedan proces ispisuje primljene podatke
     if (rank == 1)
     {
-        std::cout << "Proces 1 sadrži sledeće podatke: " << std::endl;
+        std::cout << "Proces 1 sadrzi sledece podatke: " << std::endl;
         for (int i = 0; i < N; i++)
         {
             std::cout << "Student broj: " << i + 1 << std::endl;
             std::cout << "Indeks: " << studenti[i].indeks << " ";
             std::cout << "Ime: " << studenti[i].ime << " ";
             std::cout << "Prezime: " << studenti[i].prezime << " ";
-            std::cout << "Prosečna ocena: " << studenti[i].prosecnaOcena << " ";
+            std::cout << "Prosecna ocena: " << studenti[i].prosecnaOcena << " ";
             std::cout << "Godina studija: " << studenti[i].godinaStudija << " ";
             std::cout << std::endl;
         }

@@ -3,6 +3,13 @@
 int main(int argc, char* argv[])
 {
     // =================================
+    // ISPITNI ZADACI IZ 2022.
+    // =================================
+    jun2022zadatak2(argc, argv);
+    // =================================
+
+
+    // =================================
     // ISPITNI ZADACI IZ 2023.
     // =================================
     // januar2023zadatak2A(argc, argv);
@@ -13,7 +20,7 @@ int main(int argc, char* argv[])
     // april2023zadatak2B(argc, argv);
     // april2023zadatak3(argc, argv);
     // ---------------------------------
-    decembar2023zadatak1(argc, argv);
+    // decembar2023zadatak1(argc, argv);
     // mpiWriteDec2023(argc, argv);
     // =================================
 
